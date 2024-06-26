@@ -32,9 +32,13 @@ public class BoardingHouseController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateBoardingHouse(BoardingHouse boardingHouse)
+    public async Task<IActionResult> CreateBoardingHouse(CreateBoardingHouseDTO boardingHouse)
     {
-        var createdBoardingHouse = await _boardingHouseService.CreateBoardingHouseAsync(boardingHouse);
+        BoardingHouse newBoardingHouse = new  (){
+            Name = boardingHouse.Name,
+            Location = boardingHouse.Location
+        };
+        var createdBoardingHouse = await _boardingHouseService.CreateBoardingHouseAsync(newBoardingHouse);
         return CreatedAtAction(nameof(GetBoardingHouseByName), new { name = createdBoardingHouse.Name }, createdBoardingHouse);
     }
 

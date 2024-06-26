@@ -15,7 +15,7 @@ public class RoomController : ControllerBase
     }
 
     [HttpPost("/api/boardinghouses/{id}/rooms")]
-    public async Task<IActionResult> CreateRoomForBoardingHouse(int id, Room room)
+    public async Task<IActionResult> CreateRoomForBoardingHouse(int id, CreateRoomDTO room)
     {
         var boardingHouse = await _boardingHouseService.GetBoardingHouseByIdAsync(id);
         if (boardingHouse == null)
@@ -23,7 +23,13 @@ public class RoomController : ControllerBase
             return NotFound();
         }
         room.BoardingHouseId = id;
-        var createdRoom = await _roomService.CreateRoomAsync(room);
+        Room newRoom = new Room(){
+            BoardingHouseId = room.BoardingHouseId,
+            Name = room.Name
+        };
+
+        
+        var createdRoom = await _roomService.CreateRoomAsync(newRoom);
         return CreatedAtAction(nameof(GetRoomsByBoardingHouseId), new { id = boardingHouse.Id }, createdRoom);
     }
 

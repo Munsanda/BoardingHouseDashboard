@@ -15,15 +15,23 @@ public class RepairController : ControllerBase
     }
 
     [HttpPost("/api/rooms/{id}/repairs")]
-    public async Task<IActionResult> ReportRepairForRoom(int id, Repair repair)
+    public async Task<IActionResult> ReportRepairForRoom(int id, CreateRepairDTO repair)
     {
         var room = await _roomService.GetRoomByIdAsync(id);
+        
         if (room == null)
         {
             return NotFound();
         }
         repair.RoomId = id;
-        var createdRepair = await _repairService.CreateRepairAsync(repair);
+        Repair newRepair = new(){
+            DateOfReport = repair.DateOfReport,
+            DateOfCompletion = repair.DateOfCompletion,
+            Notes = repair.Notes,
+            RepairsComplete = false,
+            RoomId = repair.RoomId
+        };
+        var createdRepair = await _repairService.CreateRepairAsync(newRepair);
         return CreatedAtAction(nameof(GetRepairById), new { id = createdRepair.Id }, createdRepair);
     }
 
