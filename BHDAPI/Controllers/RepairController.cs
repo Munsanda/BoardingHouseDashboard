@@ -46,6 +46,18 @@ public class RepairController : ControllerBase
         return Ok(repair);
     }
 
+    [HttpGet("/api/rooms/{id}/repairs")]
+    public async Task<IActionResult> getRepairsByRoomId(int id)
+    {
+        var room = await _roomService.GetRoomByIdAsync(id);
+        var repair = await _repairService.GetRepairByIdAsync(id);
+        if (repair == null)
+        {
+            return NotFound();
+        }
+        return Ok(room.Repairs);
+    }
+
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteRepair(int id)
     {

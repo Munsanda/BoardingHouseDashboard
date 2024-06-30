@@ -1,0 +1,23 @@
+/* components/styles/RepairList.css */
+.repair-list {
+    margin-top: 2rem;
+}
+
+.repair-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.repair-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.repair-list ul li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.repair-list ul li:last-child {
+    border-bottom: none;
+}

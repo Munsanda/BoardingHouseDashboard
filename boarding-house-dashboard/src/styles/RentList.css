@@ -1,0 +1,23 @@
+/* components/styles/RentList.css */
+.rent-list {
+    margin-top: 2rem;
+}
+
+.rent-list h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.rent-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.rent-list ul li {
+    padding: 0.5rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.rent-list ul li:last-child {
+    border-bottom: none;
+}
