@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BHDAPI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ed7a92301f56c55708bdbb111468f3ba960e6da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+36c78156f0de1a7cbc5401209754022ad183bc7c")]
 [assembly: System.Reflection.AssemblyProductAttribute("BHDAPI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BHDAPI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
