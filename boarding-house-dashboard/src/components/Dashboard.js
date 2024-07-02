@@ -9,7 +9,7 @@ const Dashboard = () => {
             <Sidebar />
             <div className="content">
                 <h1>Boarding House 1</h1>
-                <input type="text" placeholder="Search rooms..." />
+                <input type="text" placeholder="Search for rooms..." />
                 <button>Filter</button>
                 {/* Add routing here */}
             </div>
