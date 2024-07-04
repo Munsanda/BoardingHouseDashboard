@@ -2,6 +2,7 @@
 .dashboard {
     display: flex;
     height: 3rem;
+    padding-bottom: 6rem;
 }
 
 .sidebar {

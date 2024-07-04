@@ -64,6 +64,7 @@ public class BoardingHouseService : IBoardingHouseService
                     Fname = s.Fname,
                     Lname = s.Lname,
                     IdNumber = s.IdNumber,
+                    RoomId = s.RoomId,
                     DateOfEntry = s.DateOfEntry,
                     NumberOfWarnings = s.NumberOfWarnings,
                     Rents = s.Rents.Select(t => new Rent

@@ -20,15 +20,27 @@ public class BoardingHouseController : ControllerBase
         return Ok(filteredHouses);
     }
 
-    [HttpGet("{id}/rooms")]
-    public async Task<IActionResult> GetRoomsByBoardingHouseId(int id)
+    [HttpGet("{id}/students")]
+    public async Task<IActionResult> GetStudentsByBoardingHouseId(int id)
     {
-        var boardingHouse = await _boardingHouseService.GetBoardingHouseByIdAsync(id);
+        var boardingHouse = await _boardingHouseService.GetRoomsByBoardingHouseIdAsync(id);
         if (boardingHouse == null)
         {
             return NotFound();
         }
-        return Ok(boardingHouse.Rooms);
+        var studentsInBH = boardingHouse.Select(x => x.Students);
+        return Ok(studentsInBH);
+    }
+
+    [HttpGet("{id}/rooms")]
+    public async Task<IActionResult> GetRoomsByBoardingHouseId(int id)
+    {
+        var boardingHouse = await _boardingHouseService.GetRoomsByBoardingHouseIdAsync(id);
+        if (boardingHouse == null)
+        {
+            return NotFound();
+        }
+        return Ok(boardingHouse);
     }
 
     [HttpPost]

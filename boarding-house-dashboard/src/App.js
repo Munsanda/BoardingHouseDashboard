@@ -14,7 +14,7 @@ function App() {
                 <Dashboard />
                 <Routes>
                     <Route path="/rooms" element={<RoomList boardingHouseId={2} />} />
-                    <Route path="/students" element={<StudentList />} />
+                    <Route path="/students" element={<StudentList boardingHouseId={2}  />} />
                     <Route path="/rent" element={<RentList />} />
                     <Route path="/repairs" element={<RepairList />} />
                 </Routes>

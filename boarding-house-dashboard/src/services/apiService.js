@@ -7,6 +7,7 @@ const api = axios.create({
 export const boardingHouseId = 2;
 export const getBoardingHouses = () => api.get('/boardinghouses');
 export const getRoomsByBoardingHouseId = (id) => api.get(`/boardinghouses/${id}/rooms`);
+export const getStudentsByBoardingHouseId = (id) => api.get(`/boardinghouse/${id}/students`); 
 export const getStudentsByRoomId = (id) => api.get(`/rooms/${id}/students`);
 export const createBoardingHouse = (boardingHouse) => api.post('/boardinghouses', boardingHouse);
 export const createRoomForBoardingHouse = (id, room) => api.post(`/boardinghouses/${id}/rooms`, room);
