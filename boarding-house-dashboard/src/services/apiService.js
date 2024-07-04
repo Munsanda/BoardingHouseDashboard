@@ -1,10 +1,10 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'https://localhost:5035/api', // Adjust this URL to match your API's URL
+    baseURL: 'http://localhost:5035/api', // Adjust this URL to match your API's URL
 });
 
-export const boardingHouseId = 1;
+export const boardingHouseId = 2;
 export const getBoardingHouses = () => api.get('/boardinghouses');
 export const getRoomsByBoardingHouseId = (id) => api.get(`/boardinghouses/${id}/rooms`);
 export const getStudentsByRoomId = (id) => api.get(`/rooms/${id}/students`);

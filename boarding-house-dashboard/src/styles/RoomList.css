@@ -1,6 +1,7 @@
-/* components/styles/RoomList.css */
+/* src/styles/RoomList.css */
 .room-list {
-    margin-top: 2rem;
+    margin-top: 6rem;
+    margin-left: 7rem;
 }
 
 .room-list h2 {
@@ -8,16 +9,33 @@
     margin-bottom: 1rem;
 }
 
-.room-list ul {
-    list-style: none;
-    padding: 0;
-}
-
-.room-list ul li {
+.room-list-header,
+.room-list-item {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr 1fr;
+    gap: 1rem;
     padding: 0.5rem;
     border-bottom: 1px solid #ccc;
 }
 
-.room-list ul li:last-child {
-    border-bottom: none;
+.room-list-header {
+    font-weight: bold;
+}
+
+.room-list-item {
+    align-items: center;
+}
+
+.room-name {
+    font-weight: bold;
+}
+
+.room-details > div {
+    padding: 0.5rem 0;
+}
+
+.students > div,
+.rent > div,
+.repairs > div {
+    margin-bottom: 0.5rem;
 }

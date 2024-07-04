@@ -1,6 +1,7 @@
 /* src/components/Dashboard.css */
 .dashboard {
     display: flex;
+    height: 3rem;
 }
 
 .sidebar {

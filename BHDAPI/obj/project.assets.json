@@ -4466,26 +4466,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\chizi\\.nuget\\packages\\": {}
+    "C:\\Users\\elias\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Repos\\BoardingHouseDashboard\\BoardingHouseDashboard\\BHDAPI\\BHDAPI.csproj",
+      "projectUniqueName": "C:\\Users\\elias\\OneDrive\\Desktop\\BoardingHouseDashboard\\BHDAPI\\BHDAPI.csproj",
       "projectName": "BHDAPI",
-      "projectPath": "D:\\Repos\\BoardingHouseDashboard\\BoardingHouseDashboard\\BHDAPI\\BHDAPI.csproj",
-      "packagesPath": "C:\\Users\\chizi\\.nuget\\packages\\",
-      "outputPath": "D:\\Repos\\BoardingHouseDashboard\\BoardingHouseDashboard\\BHDAPI\\obj\\",
+      "projectPath": "C:\\Users\\elias\\OneDrive\\Desktop\\BoardingHouseDashboard\\BHDAPI\\BHDAPI.csproj",
+      "packagesPath": "C:\\Users\\elias\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\elias\\OneDrive\\Desktop\\BoardingHouseDashboard\\BHDAPI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\chizi\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\elias\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net8.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -4557,8 +4555,16 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.302/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\elias\\OneDrive\\Desktop\\BoardingHouseDashboard\\BHDAPI\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

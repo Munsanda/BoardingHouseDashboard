@@ -48,8 +48,45 @@ public class BoardingHouseService : IBoardingHouseService
 
     public async Task<IEnumerable<Room>> GetRoomsByBoardingHouseIdAsync(int id)  // Implement this method
     {
-        return await _context.Rooms.Where(r => r.BoardingHouseId == id).ToListAsync();
+        return await _context.Rooms.
+            Where(r => r.BoardingHouseId == id).
+            Include(p => p.Repairs).
+            Include(s => s.Students).
+            ThenInclude(t => t.Rents)
+            .Select(r => new Room
+            {
+                Id = r.Id,
+                Name = r.Name,
+                BoardingHouseId = r.BoardingHouseId,
+                Students = r.Students.Select(s => new Student
+                {
+                    Id = s.Id,
+                    Fname = s.Fname,
+                    Lname = s.Lname,
+                    IdNumber = s.IdNumber,
+                    DateOfEntry = s.DateOfEntry,
+                    NumberOfWarnings = s.NumberOfWarnings,
+                    Rents = s.Rents.Select(t => new Rent
+                    {
+                        Id = t.Id,
+                        StartDate = t.StartDate,
+                        EndDate = t.EndDate,
+                        Amount = t.Amount
+                    }).ToList()
+                }).ToList(),
+                Repairs = r.Repairs.Select(p => new Repair
+                {
+                    Id = p.Id,
+                    DateOfReport = p.DateOfReport,
+                    DateOfCompletion = p.DateOfCompletion,
+                    Cost = p.Cost,
+                    Notes = p.Notes,
+                    RoomId = p.RoomId,
+                    RepairsComplete = p.RepairsComplete
+                }).ToList()
+            }).ToListAsync();
+
     }
 
-    
+     
 }
