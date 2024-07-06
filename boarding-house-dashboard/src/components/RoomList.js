@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getRoomsByBoardingHouseId, createRoomForBoardingHouse } from '../services/apiService';
 import AddStudent from './AddStudent'; // Import AddStudent as default
+import AddRent from './AddRent'; // Import AddStudent as default
 import '../styles/RoomList.css';
 
 const RoomList = ({ boardingHouseId }) => {
@@ -106,14 +107,14 @@ const RoomList = ({ boardingHouseId }) => {
                                     ))}
                                     <AddStudent roomId = {room.id} fetchRooms={fetchRooms} setError={setError}/>
                                 </div>
+
+                            </div>
+                            <div className="room-details">
                                 <div className="rent">
                                     {room.students?.$values?.map(student => (
-                                        <div key={student.id}>{/* Display rent status here */}</div>
-                                    ))}
-                                </div>
-                                <div className="repairs">
-                                    {room.repairs?.$values?.map(repair => (
-                                        <div key={repair.id}>{repair.description}</div>
+                                        <div key={student.id}>{
+                                            <AddRent StudentId = {student.id} fetchRooms={fetchRooms} setError={setError}/>
+                                        }</div>
                                     ))}
                                 </div>
                             </div>
