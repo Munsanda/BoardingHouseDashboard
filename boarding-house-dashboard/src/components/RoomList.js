@@ -15,7 +15,7 @@ const RoomList = ({ boardingHouseId }) => {
             const result = await getRoomsByBoardingHouseId(boardingHouseId);
             console.log('API Result:', result); // Debugging: log the API result
             const roomsData = result.data.$values; // Adjusting to your data structure
-            
+
             if (Array.isArray(roomsData)) {
                 // Flattening the rooms array to include references
                 const flattenedRooms = flattenRooms(roomsData);
@@ -33,20 +33,20 @@ const RoomList = ({ boardingHouseId }) => {
     // Function to flatten rooms data structure
     const flattenRooms = (roomsArray) => {
         const roomsMap = {};
-        
+
         const addRoomToMap = (room) => {
             if (!roomsMap[room.id]) {
                 roomsMap[room.id] = room;
             }
         };
-        
+
         roomsArray.forEach(room => {
             if (room.$ref) {
                 // If it's a reference, it should already be in the map
                 return;
             }
             addRoomToMap(room);
-            
+
             // If the room has nested rooms, add them as well
             if (room.boardingHouse?.rooms?.$values) {
                 room.boardingHouse.rooms.$values.forEach(nestedRoom => {
@@ -61,7 +61,7 @@ const RoomList = ({ boardingHouseId }) => {
                 });
             }
         });
-        
+
         return Object.values(roomsMap);
     };
 
@@ -105,7 +105,7 @@ const RoomList = ({ boardingHouseId }) => {
                                     {room.students?.$values?.map(student => (
                                         <div key={student.id}>{student.fname} {student.lname}</div>
                                     ))}
-                                    <AddStudent roomId = {room.id} fetchRooms={fetchRooms} setError={setError}/>
+                                    <AddStudent roomId={room.id} fetchRooms={fetchRooms} setError={setError} />
                                 </div>
 
                             </div>
@@ -113,7 +113,7 @@ const RoomList = ({ boardingHouseId }) => {
                                 <div className="rent">
                                     {room.students?.$values?.map(student => (
                                         <div key={student.id}>{
-                                            <AddRent StudentId = {student.id} fetchRooms={fetchRooms} setError={setError}/>
+                                            <AddRent StudentId={student.id} fetchRooms={fetchRooms} setError={setError} />
                                         }</div>
                                     ))}
                                 </div>
