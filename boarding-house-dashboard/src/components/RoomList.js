@@ -2,13 +2,17 @@ import React, { useEffect, useState } from 'react';
 import { getRoomsByBoardingHouseId, createRoomForBoardingHouse } from '../services/apiService';
 import AddStudent from './AddStudent'; // Import AddStudent as default
 import AddRent from './AddRent'; // Import AddStudent as default
+import Modal from './Modal';
 import '../styles/RoomList.css';
+
 
 const RoomList = ({ boardingHouseId }) => {
     const [rooms, setRooms] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [newRoomName, setNewRoomName] = useState('');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [currentStudentId, setCurrentStudentId] = useState(null);
 
     const fetchRooms = async () => {
         try {
