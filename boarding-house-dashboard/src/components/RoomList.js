@@ -118,6 +118,7 @@ const RoomList = ({ boardingHouseId }) => {
                                     {room.students?.$values?.map(student => (
                                         <div key={student.id}>{
                                             <AddRent StudentId={student.id} fetchRooms={fetchRooms} setError={setError} />
+                                            
                                         }</div>
                                     ))}
                                 </div>
@@ -125,7 +126,7 @@ const RoomList = ({ boardingHouseId }) => {
                         </div>
                     ))
                 ) : (
-                    <div>No rooms available.</div>
+                    <div>No rooms available. here</div>
                 )}
             </div>
             <div className="add-room">
