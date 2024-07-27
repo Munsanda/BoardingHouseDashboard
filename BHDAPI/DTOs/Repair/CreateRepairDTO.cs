@@ -1,6 +1,5 @@
 public class CreateRepairDTO
 {
-    public int Id { get; set; } // Primary Key
     public DateTime DateOfReport { get; set; }
     public string Notes { get; set; }
     public bool RepairsComplete { get; set; }

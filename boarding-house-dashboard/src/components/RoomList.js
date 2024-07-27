@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getRoomsByBoardingHouseId, createRoomForBoardingHouse } from '../services/apiService';
+import { getRoomsByBoardingHouseId, createRoomForBoardingHouse, createRepairForRoom } from '../services/apiService';
 import AddStudent from './AddStudent'; // Import AddStudent as default
 import AddRent from './AddRent'; // Import AddStudent as default
+import AddRepair from './AddRepair';
 import Modal from './Modal';
 import '../styles/RoomList.css';
 
@@ -87,11 +88,30 @@ const RoomList = ({ boardingHouseId }) => {
         }
     };
 
+    // A function to format the date
+    const formatDate = (dateString) => {
+        const date = new Date(dateString);
+        return new Intl.DateTimeFormat('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+        }).format(date);
+    };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error loading rooms: {error.message}</div>;
 
     return (
         <div>
+            <div className="add-room">
+                <input
+                    type="text"
+                    value={newRoomName}
+                    onChange={(e) => setNewRoomName(e.target.value)}
+                    placeholder="Enter room name"
+                />
+                <button onClick={handleAddRoom}>Add Room</button>
+            </div>
             <div className="room-list">
                 <h2>Rooms</h2>
                 <div className="room-list-header">
@@ -123,10 +143,23 @@ const RoomList = ({ boardingHouseId }) => {
                                     ))}
                                 </div>
                             </div>
+                            <div className="room-details">
+                                <div className="rent">
+                                    {room.repairs?.$values?.map((repair) => (
+                                    <div key={repair.id} style={{ 
+                                        color: repair.repairsComplete ? 'green' : 'red' 
+                                    }}>
+                                     {repair.notes} -  {formatDate(repair.dateOfReport)} - {repair.repairsComplete ? 'Complete' : 'Incomplete'}
+                                    </div>
+                                    
+                                    ))}
+                                    <AddRepair RoomId = {room.id} fetchRooms={fetchRooms} setError={setError}/>
+                                </div>
+                            </div>
                         </div>
                     ))
                 ) : (
-                    <div>No rooms available. here</div>
+                    <div>No rooms available</div>
                 )}
             </div>
             <div className="add-room">
