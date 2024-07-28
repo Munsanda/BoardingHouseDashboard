@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { createStudentForRoom } from '../services/apiService';
+import { createRentForStudent } from '../services/apiService';
 
 const AddRent = ({ StudentId, fetchRooms, setError }) => {
     //const [StudentId, setStudentId] = useState('');
@@ -15,11 +15,11 @@ const AddRent = ({ StudentId, fetchRooms, setError }) => {
         const rent = {
             StudentId,
             Amount,
-            StartDate: StartDate,
-            dateOfEntry: EndDate
+            StartDate: new Date(StartDate).toISOString(),
+            EndDate: new Date(EndDate).toISOString()
         };
         try {
-            await createStudentForRoom(StudentId, rent);
+            await createRentForStudent(StudentId, rent);
             //setStudentId('');
             setAmount('');
             setStartDate('');
