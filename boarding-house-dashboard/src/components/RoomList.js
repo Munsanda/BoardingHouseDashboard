@@ -12,8 +12,21 @@ const RoomList = ({ boardingHouseId }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [newRoomName, setNewRoomName] = useState('');
-    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [modalContent, setModalContent] = useState(null);
+    // Function to open the modal
+    const openModalWithContent = (content) => {
+        setModalContent(content);
+        setModalOpen(true);
+    };
+    // Function to close the modal
+    const closeModal = () => {
+        setModalOpen(false);
+        setModalContent(null);
+    };
     const [currentStudentId, setCurrentStudentId] = useState(null);
+
+
 
     const fetchRooms = async () => {
         try {
@@ -129,7 +142,8 @@ const RoomList = ({ boardingHouseId }) => {
                                     {room.students?.$values?.map(student => (
                                         <div key={student.id}>{student.fname} {student.lname}</div>
                                     ))}
-                                    <AddStudent roomId={room.id} fetchRooms={fetchRooms} setError={setError} />
+                                     <button onClick={() =>openModalWithContent(<AddStudent roomId={room.id} fetchRooms={fetchRooms} setError={setError} />)}>Add Student</button>
+                                    
                                 </div>
 
                             </div>
@@ -137,9 +151,10 @@ const RoomList = ({ boardingHouseId }) => {
                                 <div className="rent">
                                     {room.students?.$values?.map(student => (
                                         <div key={student.id}>{
-                                            <AddRent StudentId={student.id} fetchRooms={fetchRooms} setError={setError} />
-                                            
-                                        }</div>
+                                            <button onClick={() => openModalWithContent(<AddRent StudentId={student.id} fetchRooms={fetchRooms} setError={setError} />)}>Add Rent</button>
+                                        }
+                                        </div>
+                                        
                                     ))}
                                 </div>
                             </div>
@@ -153,9 +168,13 @@ const RoomList = ({ boardingHouseId }) => {
                                     </div>
                                     
                                     ))}
-                                    <AddRepair RoomId = {room.id} fetchRooms={fetchRooms} setError={setError}/>
+                                    
+                                    <button onClick={ () => openModalWithContent(<AddRepair RoomId = {room.id} fetchRooms={fetchRooms} setError={setError}/>)}>Add Repair</button>
                                 </div>
                             </div>
+                            <Modal isOpen={isModalOpen} onClose={closeModal}>
+                                {modalContent}
+                            </Modal>
                         </div>
                     ))
                 ) : (
