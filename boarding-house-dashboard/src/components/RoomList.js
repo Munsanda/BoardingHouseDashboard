@@ -111,6 +111,23 @@ const RoomList = ({ boardingHouseId }) => {
         }).format(date);
     };
 
+    // Utility function to determine rent status color
+    const getRentStatusColor = (endDate) => {
+        const today = new Date();
+        const rentEndDate = new Date(endDate);
+
+        console.log(endDate);
+            console.log(today);
+        if (rentEndDate < today) {
+            
+            return 'red'; // Rent is overdue
+        } else if(rentEndDate > today) {
+            return 'green'; // Rent is paid or not yet due
+        }else {
+            return 'gray';
+        }
+    };
+
     if (loading) return <div>Loading...</div>;
     if (error) return <div>Error loading rooms: {error.message}</div>;
 
@@ -151,7 +168,20 @@ const RoomList = ({ boardingHouseId }) => {
                                 <div className="rent">
                                     {room.students?.$values?.map(student => (
                                         <div key={student.id}>{
-                                            <button onClick={() => openModalWithContent(<AddRent StudentId={student.id} fetchRooms={fetchRooms} setError={setError} />)}>Add Rent</button>
+                                            <div>
+                                                <div
+                                                    className="rent-status"
+                                                    style={{
+                                                        
+                                                        width: '15px', // Size of the square
+                                                        height: '15px',
+                                                        backgroundColor: getRentStatusColor(student.rents?.$values[(student.rents?.$values.length) - 1]?.endDate),
+                                                        display: 'inline-block',
+                                                        marginRight: '5px',
+                                                    }}
+                                                ></div>
+                                                <button onClick={() => openModalWithContent(<AddRent StudentId={student.id} fetchRooms={fetchRooms} setError={setError} />)}>Add Rent</button>
+                                            </div>
                                         }
                                         </div>
                                         
