@@ -19,6 +19,7 @@
 .sidebar nav ul {
     list-style: none;
     padding: 0;
+    padding-left: 40px;
 }
 
 .sidebar nav ul li {
