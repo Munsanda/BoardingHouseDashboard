@@ -1,5 +1,42 @@
+body{
+  min-height: 100vh;
+  box-sizing: border-box;
+  margin: 0;
+  background-color: white;
+}
+
 .App {
-  text-align: center;
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: .25fr 1fr 1fr;
+  gap: .5rem;
+  min-height: 100vh;
+  padding: .5rem;
+}
+
+.App > div{
+  border:2px solid #dcdfe2;
+  border-radius: .5rem;
+  background-color: #f8f9fa;
+}
+
+.sidebar-panel{
+  border: red solid 2px;
+  grid-row: span 2;
+  min-height: 95vh;
+}
+
+.search-bar, .main-content{
+  padding-left: 5rem;
+  padding-right: 5rem;
+}
+
+.search-bar{
+  grid-column: span 2;
+}
+
+.main-content{
+  grid-column: span 2;
 }
 
 .App-logo {

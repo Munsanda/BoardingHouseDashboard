@@ -1,16 +1,20 @@
 // src/components/Dashboard.js
 import React from 'react';
-import Sidebar from './Sidebar';
 import '../styles/Dashboard.css';
 
 const Dashboard = () => {
     return (
         <div className="dashboard">
-            <Sidebar />
-            <div className="content">
-                <h1>Boarding House 1</h1>
-                <input type="text" placeholder="Search for rooms..." />
-                <button>Filter</button>
+            <div className="main-searchbar">
+                <div className="house-title">
+                    <h2>Boarding House 1</h2>
+                </div>
+                
+                <div className="search-box">
+                    <input type="text" placeholder="Search for rooms..." />
+                    <button>Filter</button>
+                </div>
+
                 {/* Add routing here */}
             </div>
         </div>

@@ -133,15 +133,6 @@ const RoomList = ({ boardingHouseId }) => {
 
     return (
         <div>
-            <div className="add-room">
-                <input
-                    type="text"
-                    value={newRoomName}
-                    onChange={(e) => setNewRoomName(e.target.value)}
-                    placeholder="Enter room name"
-                />
-                <button onClick={handleAddRoom}>Add Room</button>
-            </div>
             <div className="room-list">
                 <h2>Rooms</h2>
                 <div className="room-list-header">
