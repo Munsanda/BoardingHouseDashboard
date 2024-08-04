@@ -21,8 +21,14 @@ namespace BHDAPI.Data.Interfaces {
         Task<Room> UpdateRoomAsync(Room room);
         Task DeleteRoomAsync(int id);
         Task<IEnumerable<Student>> GetStudentsByRoomIdAsync(int id);  // Add this method
+
     }
 
+    public class MonthlyIncome
+    {
+        public DateTime Month { get; set; }
+        public decimal TotalIncome { get; set; }
+    }
 
 
     public interface IStudentService
@@ -45,6 +51,13 @@ namespace BHDAPI.Data.Interfaces {
         Task<Rent> CreateRentAsync(Rent rent);
         Task<Rent> UpdateRentAsync(Rent rent);
         Task DeleteRentAsync(int id);
+        Task<decimal> GetTotalRentCollectedAsync(DateTime month);
+        Task<decimal> GetOutstandingPaymentsAsync(DateTime month);
+        Task<decimal> GetExpectedIncomeAsync(DateTime month);
+        Task<int> GetOccupiedRoomsCountAsync();
+        Task<int> GetTotalRoomsCountAsync();
+        Task<decimal> GetAverageRentAsync();
+        Task<IEnumerable<MonthlyIncome>> GetHistoricalIncomeTrendsAsync();
     }
 
 

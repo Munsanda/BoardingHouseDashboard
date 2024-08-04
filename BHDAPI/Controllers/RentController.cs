@@ -46,4 +46,53 @@ public class RentController : ControllerBase
         return Ok(rent);
     }
 
+    [HttpGet("overview")]
+    public async Task<IActionResult> GetOverview()
+    {
+        try
+        {
+            var month = DateTime.Now;
+
+            var totalCollected = await _rentService.GetTotalRentCollectedAsync(month);
+            var outstandingPayments = await _rentService.GetOutstandingPaymentsAsync(month);
+            var expectedIncome = await _rentService.GetExpectedIncomeAsync(month);
+
+            return Ok(new
+            {
+                TotalCollected = totalCollected,
+                OutstandingPayments = outstandingPayments,
+                ExpectedIncome = expectedIncome
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
+    [HttpGet("quick-stats")]
+    public async Task<IActionResult> GetQuickStats()
+    {
+        try
+        {
+            var occupiedRooms = await _rentService.GetOccupiedRoomsCountAsync();
+            var totalRooms = await _rentService.GetTotalRoomsCountAsync();
+            var averageRent = await _rentService.GetAverageRentAsync();
+            var historicalTrends = await _rentService.GetHistoricalIncomeTrendsAsync();
+
+            var occupancyRate = (double)occupiedRooms / totalRooms * 100;
+
+            return Ok(new
+            {
+                OccupancyRate = occupancyRate,
+                AverageRent = averageRent,
+                HistoricalTrends = historicalTrends
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"Internal server error: {ex.Message}");
+        }
+    }
+
 }

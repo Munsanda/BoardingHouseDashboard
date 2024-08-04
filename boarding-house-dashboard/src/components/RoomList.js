@@ -24,10 +24,9 @@ const RoomList = ({ boardingHouseId }) => {
         setModalOpen(false);
         setModalContent(null);
     };
+
     const [currentStudentId, setCurrentStudentId] = useState(null);
-
-
-
+    
     const fetchRooms = async () => {
         try {
             const result = await getRoomsByBoardingHouseId(boardingHouseId);

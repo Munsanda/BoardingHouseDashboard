@@ -12,7 +12,7 @@ const RentList = ({ studentId }) => {
             setRentDetails(result.data);
         };
         fetchRentDetails();
-    }, [studentId]);
+    }, [studentId]); 
 
     return (
         <div className="rent-list">
