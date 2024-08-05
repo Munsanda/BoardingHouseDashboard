@@ -1,6 +1,8 @@
 // src/components/Dashboard.js
 import React from 'react';
 import '../styles/Dashboard.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash, faShuffle  } from '@fortawesome/free-solid-svg-icons'
 
 const Dashboard = () => {
     return (

@@ -65,6 +65,7 @@ namespace BHDAPI.Data.Interfaces {
     {
         Task<IEnumerable<Repair>> GetAllRepairsAsync();
         Task<Repair> GetRepairByIdAsync(int id);
+        Task<ICollection<Repair>> GetRepairsByRoomIdAsync(int id);
         Task<Repair> CreateRepairAsync(Repair repair);
         Task<Repair> UpdateRepairAsync(Repair repair);
         Task DeleteRepairAsync(int id);

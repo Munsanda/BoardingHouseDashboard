@@ -2,10 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Sidebar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faBars  } from '@fortawesome/free-solid-svg-icons'
 
 const Sidebar = () => {
     return (
         <div className="sidebar">
+            <FontAwesomeIcon icon={faBars} />
             <h2>Dashboard</h2>
             <nav>
                 <ul>
