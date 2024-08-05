@@ -65,8 +65,8 @@ public class RepairController : ControllerBase
 
         var repair = await _repairService.GetRepairByIdAsync(id);
         repair.Cost = Urepair.Cost;
-        repair.RepairsComplete = true;
         repair.Notes = Urepair.Notes;
+        repair.RepairsComplete = Urepair.RepairsComplete;
         repair.DateOfCompletion = DateTime.Now;
 
         var updatedRepair = await _repairService.UpdateRepairAsync(repair);

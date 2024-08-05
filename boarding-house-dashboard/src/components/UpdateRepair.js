@@ -6,6 +6,7 @@ const UpdateRepair = ({ repairId, fetchRooms, setError }) => {
     //const [StudentId, setStudentId] = useState('');
     const [notes, setNotes] = useState('');
     const [cost, setCost] = useState('');
+    const[state, setState] = useState(false);
     const [repairDetails, setRepairDetails] = useState([]);
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const UpdateRepair = ({ repairId, fetchRooms, setError }) => {
     useEffect(() => {
         setCost(repairDetails.cost);
         setNotes(repairDetails.notes);
+        setState(repairDetails.state)
     }, [repairDetails])
     
     const handleUpdateRepair = async () => {
@@ -64,6 +66,13 @@ const UpdateRepair = ({ repairId, fetchRooms, setError }) => {
                         onChange={(e) => setCost(e.target.value)}
                         placeholder="cost"
                     />
+            <select
+                value={state}
+                onChange={(e) => setState(e.target.value === 'true')}
+            >
+                <option value="true">True</option>
+                <option value="false">False</option>
+            </select>
             </div>}
             <button onClick={handleUpdateRepair}>Update Repair</button>
         </div>
