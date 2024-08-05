@@ -140,6 +140,7 @@ const RoomList = ({ boardingHouseId }) => {
                 <div className="room-list-header">
                     <span>Room Name</span>
                     <span>Students</span>
+                    <span>Edit</span>
                     <span>Rent Status</span>
                     <span>Repairs</span>
                 </div>
