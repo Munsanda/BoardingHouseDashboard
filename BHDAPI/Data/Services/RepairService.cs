@@ -19,6 +19,8 @@ public class RepairService : IRepairService
         return await _context.Repairs.FindAsync(id);
     }
 
+
+
     public async Task<Repair> CreateRepairAsync(Repair repair)
     {
         _context.Repairs.Add(repair);
@@ -45,5 +47,8 @@ public class RepairService : IRepairService
         await _context.SaveChangesAsync();
     }
 
-    
+    public async Task<ICollection<Repair>> GetRepairsByRoomIdAsync(int id)
+    {
+        return await _context.Repairs.Where(x => x.RoomId == id).ToListAsync();
+    }
 }

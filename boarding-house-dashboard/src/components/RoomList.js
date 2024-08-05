@@ -3,8 +3,11 @@ import { getRoomsByBoardingHouseId, createRoomForBoardingHouse, createRepairForR
 import AddStudent from './AddStudent'; // Import AddStudent as default
 import AddRent from './AddRent'; // Import AddStudent as default
 import AddRepair from './AddRepair';
+import UpdateRepair  from './UpdateRepair';
 import Modal from './Modal';
 import '../styles/RoomList.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSquareXmark, faSquareCheck  } from '@fortawesome/free-solid-svg-icons'
 
 
 const RoomList = ({ boardingHouseId }) => {
@@ -147,7 +150,9 @@ const RoomList = ({ boardingHouseId }) => {
                             <div className="room-details">
                                 <div className="students">
                                     {room.students?.$values?.map(student => (
-                                        <div key={student.id}>{student.fname} {student.lname}</div>
+                                        <div key={student.id}> 
+                                           <a>{student.fname} {student.lname} </a>  
+                                        </div>
                                     ))}
                                      <button onClick={() =>openModalWithContent(<AddStudent roomId={room.id} fetchRooms={fetchRooms} setError={setError} />)}>Add Student</button>
                                     
@@ -183,8 +188,14 @@ const RoomList = ({ boardingHouseId }) => {
                                     {room.repairs?.$values?.map((repair) => (
                                     <div key={repair.id} style={{ 
                                         color: repair.repairsComplete ? 'green' : 'red' 
-                                    }}>
-                                     {repair.notes} -  {formatDate(repair.dateOfReport)} - {repair.repairsComplete ? 'Complete' : 'Incomplete'}
+                                    }}
+                                    onClick={() => openModalWithContent(<UpdateRepair repairId = {repair.id} fetchRooms={fetchRooms} setError={setError}/>)}
+                                    >
+                                     {repair.notes} -  
+                                     {formatDate(repair.dateOfReport)} - 
+                                     {repair.repairsComplete ? 
+                                        (<FontAwesomeIcon icon={faSquareCheck} /> ) : ( <FontAwesomeIcon  textAnchor='resolved' icon={faSquareXmark} />  )
+                                    } 
                                     </div>
                                     
                                     ))}

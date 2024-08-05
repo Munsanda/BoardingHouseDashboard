@@ -49,13 +49,28 @@ public class RepairController : ControllerBase
     [HttpGet("/api/rooms/{id}/repairs")]
     public async Task<IActionResult> getRepairsByRoomId(int id)
     {
-        var room = await _roomService.GetRoomByIdAsync(id);
-        var repair = await _repairService.GetRepairByIdAsync(id);
-        if (repair == null)
+        //var room = await _roomService.GetRoomByIdAsync(id);
+        var repairs = await _repairService.GetRepairsByRoomIdAsync(id);
+        if (repairs == null)
         {
             return NotFound();
         }
-        return Ok(room.Repairs);
+        return Ok(repairs);
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateRepair(int id, UpdateRepairDTO Urepair)
+    {
+
+
+        var repair = await _repairService.GetRepairByIdAsync(id);
+        repair.Cost = Urepair.Cost;
+        repair.RepairsComplete = true;
+        repair.Notes = Urepair.Notes;
+        repair.DateOfCompletion = DateTime.Now;
+
+        var updatedRepair = await _repairService.UpdateRepairAsync(repair);
+        return CreatedAtAction(nameof(GetRepairById), new { id = updatedRepair.Id }, updatedRepair);
     }
 
     [HttpDelete("{id}")]

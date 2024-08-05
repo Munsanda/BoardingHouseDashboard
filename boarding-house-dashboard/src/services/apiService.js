@@ -14,12 +14,15 @@ export const getStudentsByBoardingHouseId = (id) => api.get(`/boardinghouse/${id
 export const getStudentsByRoomId = (id) => api.get(`/rooms/${id}/students`);
 export const getRentDetailsByStudentId = (id) => api.get(`/students/${id}/rents`);
 export const getRepairsByRoomId = (id) => api.get(`/rooms/${id}/repairs`);
+export const getRepairDetails = (id) => api.get(`/repair/${id}`);
 
 export const createBoardingHouse = (boardingHouse) => api.post('/boardinghouses', boardingHouse);
 export const createRoomForBoardingHouse = (id, room) => api.post(`/boardinghouses/${id}/rooms`, room);
 export const createStudentForRoom = (id, student) => api.post(`/rooms/${id}/students`, student);
 export const createRepairForRoom = (id, repair) => api.post(`/rooms/${id}/repairs`, repair);
 export const createRentForStudent = (id,rent) => api.post(`/students/${id}/rent`, rent)
+
+export const UpdateRepairDetails = (id, repair) => api.put(`/repair/${id}/`,repair)
 
 export const deleteBoardingHouse = (id) => api.delete(`/boardinghouses/${id}`);
 export const deleteRoom = (id) => api.delete(`/rooms/${id}`);

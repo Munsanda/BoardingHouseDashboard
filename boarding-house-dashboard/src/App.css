@@ -2,7 +2,7 @@ body{
   min-height: 100vh;
   box-sizing: border-box;
   margin: 0;
-  background-color: white;
+  background-color: white;  
 }
 
 .App {
@@ -21,9 +21,14 @@ body{
 }
 
 .sidebar-panel{
-  position:fixed;
-  top: .5rem;
-  height: 98vh;
+  border: red solid 2px;
+  grid-row: span 2;
+  min-height: 95vh;
+}
+
+.search-bar, .main-content{
+  padding-left: 5rem;
+  padding-right: 5rem;
 }
 
 .search-bar{
