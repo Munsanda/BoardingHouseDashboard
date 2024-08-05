@@ -1,6 +1,5 @@
 /* src/styles/RoomList.css */
 .room-list {
-    /* margin-left: 250px; */
   
 }
 
@@ -12,7 +11,7 @@
 .room-list-header,
 .room-list-item {
     display: grid;
-    grid-template-columns: 1fr 2fr 1fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr 1fr 1fr;
     gap: 1rem;
     padding: 0.5rem;
     border-bottom: 1px solid #ccc;

@@ -6,24 +6,24 @@ body{
 }
 
 .App {
-  min-height: 98vh;
+  min-height: 100vh;
   margin: 0;
   padding-left:.5rem ;
   padding-right: .5rem;
-  /* width: 100vw; */
   border: solid red 3px;
 }
 
-.App > .sidebar-panel{
+.App > .sidebar-panel, .search-bar, .main-content{
   border:2px solid #dcdfe2;
   border-radius: .5rem;
   background-color: #f8f9fa;
 }
 
 .sidebar-panel{
-  border: red solid 2px;
-  grid-row: span 2;
-  min-height: 95vh;
+  min-height: 98vh;
+  width: fit-content;
+  position: fixed;
+  margin-top: .5rem;
 }
 
 .search-bar, .main-content{
@@ -34,7 +34,7 @@ body{
 .search-bar{
   position:fixed;
   top: .5rem;
-  width: 1345px;
+  width: 1185px;
   min-width: 900px;
 
 }
@@ -45,6 +45,7 @@ body{
 
 .main-content{
   margin-top: 6rem;
+  padding-left: 15rem;
 }
 
 .App-logo {
