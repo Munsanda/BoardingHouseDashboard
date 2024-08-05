@@ -6,37 +6,40 @@ body{
 }
 
 .App {
-  box-sizing: border-box;
-  display: grid;
-  grid-template-columns: .25fr 1fr 1fr;
-  gap: .5rem;
-  min-height: 100vh;
-  padding: .5rem;
+  min-height: 98vh;
+  margin: 0;
+  padding-left:.5rem ;
+  padding-right: .5rem;
+  /* width: 100vw; */
+  border: solid red 3px;
 }
 
-.App > div{
+.App > .sidebar-panel{
   border:2px solid #dcdfe2;
   border-radius: .5rem;
   background-color: #f8f9fa;
 }
 
 .sidebar-panel{
-  border: red solid 2px;
-  grid-row: span 2;
-  min-height: 95vh;
-}
-
-.search-bar, .main-content{
-  padding-left: 5rem;
-  padding-right: 5rem;
+  position:fixed;
+  top: .5rem;
+  height: 98vh;
 }
 
 .search-bar{
-  grid-column: span 2;
+  position:fixed;
+  top: .5rem;
+  width: 1345px;
+  min-width: 900px;
+
+}
+.search-bar, .main-content{
+  margin-left: 9rem;
+  margin-right: 9rem;
 }
 
 .main-content{
-  grid-column: span 2;
+  margin-top: 6rem;
 }
 
 .App-logo {
