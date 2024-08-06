@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BHDAPI.Migrations
 {
     [DbContext(typeof(BoardingHouseContext))]
-    partial class BoardingHouseContextModelSnapshot : ModelSnapshot
+    [Migration("20240806084050_cost")]
+    partial class cost
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,50 +43,6 @@ namespace BHDAPI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BoardingHouses");
-                });
-
-            modelBuilder.Entity("Cost", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("BoardingHouseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Category")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Type")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("rentId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("repairId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BoardingHouseId");
-
-                    b.HasIndex("rentId");
-
-                    b.HasIndex("repairId");
-
-                    b.ToTable("Cost");
                 });
 
             modelBuilder.Entity("Rent", b =>
@@ -230,29 +189,6 @@ namespace BHDAPI.Migrations
                     b.ToTable("Warnings");
                 });
 
-            modelBuilder.Entity("Cost", b =>
-                {
-                    b.HasOne("BoardingHouse", "BoardingHouse")
-                        .WithMany("Costs")
-                        .HasForeignKey("BoardingHouseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Rent", "Rent")
-                        .WithMany("Costs")
-                        .HasForeignKey("rentId");
-
-                    b.HasOne("Repair", "Repair")
-                        .WithMany()
-                        .HasForeignKey("repairId");
-
-                    b.Navigation("BoardingHouse");
-
-                    b.Navigation("Rent");
-
-                    b.Navigation("Repair");
-                });
-
             modelBuilder.Entity("Rent", b =>
                 {
                     b.HasOne("Student", "Student")
@@ -310,14 +246,7 @@ namespace BHDAPI.Migrations
 
             modelBuilder.Entity("BoardingHouse", b =>
                 {
-                    b.Navigation("Costs");
-
                     b.Navigation("Rooms");
-                });
-
-            modelBuilder.Entity("Rent", b =>
-                {
-                    b.Navigation("Costs");
                 });
 
             modelBuilder.Entity("Room", b =>

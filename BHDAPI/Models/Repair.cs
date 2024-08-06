@@ -10,4 +10,5 @@ public class Repair
 
     // Navigation Property
     public Room Room { get; set; }
+    public ICollection<Cost> Costs { get; set; }
 }

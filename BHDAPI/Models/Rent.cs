@@ -8,4 +8,5 @@ public class Rent
 
     // Navigation Property
     public Student Student { get; set; }
+    public ICollection<Cost> Costs { get; set; }
 }

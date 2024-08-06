@@ -6,4 +6,5 @@ public class BoardingHouse
 
     // Navigation Property
     public ICollection<Room> Rooms { get; set; }
+    public ICollection<Cost> Costs { get; set; }
 }

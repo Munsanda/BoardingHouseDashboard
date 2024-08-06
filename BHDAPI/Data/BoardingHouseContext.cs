@@ -8,6 +8,7 @@ public class BoardingHouseContext : DbContext
     public DbSet<Rent> Rents { get; set; }
     public DbSet<Repair> Repairs { get; set; }
     public DbSet<Warning> Warnings { get; set; }
+    public DbSet<Cost> costs {get; set;}
 
     public BoardingHouseContext(DbContextOptions<BoardingHouseContext> options)
         : base(options)
@@ -16,6 +17,11 @@ public class BoardingHouseContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<BoardingHouse>()
+            .HasMany(b => b.Rooms)
+            .WithOne(r => r.BoardingHouse)
+            .HasForeignKey(r => r.BoardingHouseId);
+
         modelBuilder.Entity<BoardingHouse>()
             .HasMany(b => b.Rooms)
             .WithOne(r => r.BoardingHouse)
