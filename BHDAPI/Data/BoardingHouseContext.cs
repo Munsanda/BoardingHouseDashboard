@@ -8,7 +8,7 @@ public class BoardingHouseContext : DbContext
     public DbSet<Rent> Rents { get; set; }
     public DbSet<Repair> Repairs { get; set; }
     public DbSet<Warning> Warnings { get; set; }
-    public DbSet<Cost> costs {get; set;}
+    public DbSet<Cost> Costs {get; set;}
 
     public BoardingHouseContext(DbContextOptions<BoardingHouseContext> options)
         : base(options)
@@ -25,6 +25,11 @@ public class BoardingHouseContext : DbContext
         modelBuilder.Entity<BoardingHouse>()
             .HasMany(b => b.Rooms)
             .WithOne(r => r.BoardingHouse)
+            .HasForeignKey(r => r.BoardingHouseId);
+
+        modelBuilder.Entity<BoardingHouse>()
+            .HasMany(bh => bh.Costs)
+            .WithOne(e => e.BoardingHouse)
             .HasForeignKey(r => r.BoardingHouseId);
 
         modelBuilder.Entity<Room>()
@@ -46,5 +51,6 @@ public class BoardingHouseContext : DbContext
             .HasMany(s => s.Warnings)
             .WithOne(w => w.Student)
             .HasForeignKey(w => w.StudentId);
+
     }
 }

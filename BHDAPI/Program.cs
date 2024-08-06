@@ -32,6 +32,7 @@ builder.Services.AddScoped<IRentService, RentService>();
 builder.Services.AddScoped<IRoomService, RoomService>();
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IRepairService, RepairService>();
+builder.Services.AddScoped<ICostService, CostService>();
 
 var app = builder.Build();
 

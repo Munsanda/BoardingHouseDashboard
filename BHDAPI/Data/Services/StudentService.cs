@@ -17,7 +17,9 @@ public class StudentService : IStudentService
 
     public async Task<Student> GetStudentByIdAsync(int id)
     {
-        return await _context.Students.FindAsync(id);
+        return await _context.Students
+                         .Include(r => r.Room) // Assuming 'Room' is the navigation property
+                         .FirstOrDefaultAsync(r => r.Id == id); // Use FirstOrDefaultAsync instead of FindAsync
     }
 
     public async Task<Student> CreateStudentAsync(Student student)

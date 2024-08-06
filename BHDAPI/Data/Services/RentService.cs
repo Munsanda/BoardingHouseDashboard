@@ -16,7 +16,9 @@ public class RentService : IRentService
 
     public async Task<Rent> GetRentByIdAsync(int id)
     {
-        return await _context.Rents.FindAsync(id);
+        return await _context.Rents
+                         .Include(r => r.Student) // Assuming 'Room' is the navigation property
+                         .FirstOrDefaultAsync(r => r.Id == id); // Use FirstOrDefaultAsync instead of FindAsync
     }
 
     public async Task<Rent> CreateRentAsync(Rent rent)

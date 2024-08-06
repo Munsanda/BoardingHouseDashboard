@@ -16,7 +16,9 @@ public class RepairService : IRepairService
 
     public async Task<Repair> GetRepairByIdAsync(int id)
     {
-        return await _context.Repairs.FindAsync(id);
+        return await _context.Repairs
+                         .Include(r => r.Room) // Assuming 'Room' is the navigation property
+                         .FirstOrDefaultAsync(r => r.Id == id); // Use FirstOrDefaultAsync instead of FindAsync
     }
 
 

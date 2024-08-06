@@ -81,5 +81,30 @@ namespace BHDAPI.Data.Interfaces {
         Task DeleteWarningAsync(int id);
     }
 
+    public interface ICostService
+    {
+        // CRUD operations
+        Task<Cost> GetCostByIdAsync(int id);
+        Task<Cost> GetCostByRepairIdAsync(int id);
+        Task<IEnumerable<Cost>> GetAllCostsAsync();
+        Task AddCostAsync(Cost cost);
+        Task UpdateCostAsync(Cost cost);
+        Task DeleteCostAsync(int id);
+
+        // Filter methods
+        Task<IEnumerable<Cost>> GetCostsByTypeAsync(CostType type);
+        Task<IEnumerable<Cost>> GetCostsByCategoryAsync(CostCategory category);
+        Task<IEnumerable<Cost>> GetCostsByDateAsync(DateTime date);
+        Task<IEnumerable<Cost>> GetCostsByAmountAsync(decimal amount);
+        Task<IEnumerable<Cost>> GetCostsByAmountRangeAsync(decimal minAmount, decimal maxAmount);
+        Task<IEnumerable<CostCategory>> GetAllCostCategoriesAsync();
+
+        // Financial summaries
+        Task<decimal> GetMonthlySummaryAsync(int month, int year);
+        Task<decimal> GetYearlySummaryAsync(int year);
+
+
+    }
+
 
 }

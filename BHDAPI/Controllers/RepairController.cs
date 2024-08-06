@@ -7,11 +7,13 @@ public class RepairController : ControllerBase
 {
     private readonly IRepairService _repairService;
     private readonly IRoomService _roomService;
+    private readonly ICostService _costService;
 
-    public RepairController(IRepairService repairService, IRoomService roomService)
+    public RepairController(IRepairService repairService, IRoomService roomService, ICostService costService)
     {
         _repairService = repairService;
         _roomService = roomService;
+        _costService = costService;
     }
 
     [HttpPost("/api/rooms/{id}/repairs")]
@@ -32,6 +34,7 @@ public class RepairController : ControllerBase
             RoomId = repair.RoomId
         };
         var createdRepair = await _repairService.CreateRepairAsync(newRepair);
+
         return CreatedAtAction(nameof(GetRepairById), new { id = createdRepair.Id }, createdRepair);
     }
 
@@ -61,15 +64,30 @@ public class RepairController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateRepair(int id, UpdateRepairDTO Urepair)
     {
-
-
         var repair = await _repairService.GetRepairByIdAsync(id);
+
+        //Get room
+        if( repair.RepairsComplete == false){
+            Cost createCost = new Cost{
+                Amount = Urepair.Cost,
+                Description = "Repair paid for: " + Urepair.Notes + " " + DateTime.Now /*Date of completion*/,
+                Date = (DateTime) repair.DateOfCompletion,
+                Type = CostType.Expense,
+                Category = CostCategory.Maintenance,
+                BoardingHouseId = repair.Room.BoardingHouseId,
+                repairId = repair.Id,
+            };
+            await _costService.AddCostAsync(createCost);
+        }
+
         repair.Cost = Urepair.Cost;
         repair.Notes = Urepair.Notes;
-        repair.RepairsComplete = Urepair.RepairsComplete;
+        repair.RepairsComplete = true;
         repair.DateOfCompletion = DateTime.Now;
 
         var updatedRepair = await _repairService.UpdateRepairAsync(repair);
+
+
         return CreatedAtAction(nameof(GetRepairById), new { id = updatedRepair.Id }, updatedRepair);
     }
 

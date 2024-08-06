@@ -66,13 +66,6 @@ const UpdateRepair = ({ repairId, fetchRooms, setError }) => {
                         onChange={(e) => setCost(e.target.value)}
                         placeholder="cost"
                     />
-            <select
-                value={state}
-                onChange={(e) => setState(e.target.value === 'true')}
-            >
-                <option value="true">True</option>
-                <option value="false">False</option>
-            </select>
             </div>}
             <button onClick={handleUpdateRepair}>Update Repair</button>
         </div>

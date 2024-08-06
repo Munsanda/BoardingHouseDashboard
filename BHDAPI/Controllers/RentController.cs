@@ -8,17 +8,22 @@ public class RentController : ControllerBase
 {
     private readonly IRentService _rentService;
     private readonly IStudentService _studentService;
+    private readonly ICostService _costSevice;
+    private readonly IRoomService _roomService;
 
-    public RentController(IRentService rentService, IStudentService studentService)
+    public RentController(IRentService rentService, IStudentService studentService, ICostService costSevice, IRoomService roomService)
     {
         _rentService = rentService;
         _studentService = studentService;
+        _costSevice = costSevice;
+        _roomService = roomService;
     }
 
     [HttpPost("/api/students/{_studentId}/rent")]
     public async Task<IActionResult> CreateRentForStudent(int _studentId, CreateRentDTO rent)
     {
         var student = await _studentService.GetStudentByIdAsync(_studentId);
+
         
         if (student == null)
         {
@@ -31,7 +36,21 @@ public class RentController : ControllerBase
             StartDate = rent.StartDate,
             EndDate = rent.EndDate
         };
+
         var createdRent = await _rentService.CreateRentAsync(newRent);
+
+        Cost createCost = new Cost{
+            Amount = createdRent.Amount,
+            Description = "Rent paid for: "+ student.Fname + " " + student.Lname + " - " + student.IdNumber,
+            Date = createdRent.StartDate,
+            Type = CostType.Income,
+            Category = CostCategory.Rent,
+            BoardingHouseId = student.Room.BoardingHouseId,
+            rentId = createdRent.Id,
+        };
+
+        await _costSevice.AddCostAsync(createCost);
+
         return CreatedAtAction(nameof(GetRentById), new { id = createdRent.Id }, createdRent);
     }
 
