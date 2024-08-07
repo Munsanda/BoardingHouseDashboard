@@ -14,8 +14,7 @@ const Sidebar = () => {
                 <ul>
                     <li><Link to="/rooms">Rooms</Link></li>
                     <li><Link to="/students">Students</Link></li>
-                    <li><Link to="/rent">Rent</Link></li>
-                    <li><Link to="/repairs">Repairs</Link></li>
+                    <li><Link to="/AccountsList ">Accounts</Link></li>
                 </ul>
             </nav>
         </div>

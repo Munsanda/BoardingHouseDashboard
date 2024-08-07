@@ -192,7 +192,7 @@ const RoomList = ({ boardingHouseId }) => {
                                     }}
                                     onClick={() => openModalWithContent(<UpdateRepair repairId = {repair.id} fetchRooms={fetchRooms} setError={setError}/>)}
                                     >
-                                     {repair.notes} -  
+                                     {repair.notes.substring(0, 6)} {(repair.notes.length > 15 )? "..." : ""} -  
                                      {formatDate(repair.dateOfReport)} - 
                                      {repair.repairsComplete ? 
                                         (<FontAwesomeIcon icon={faSquareCheck} /> ) : ( <FontAwesomeIcon  textAnchor='resolved' icon={faSquareXmark} />  )

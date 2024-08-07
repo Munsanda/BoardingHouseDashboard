@@ -29,3 +29,27 @@ export const deleteRoom = (id) => api.delete(`/rooms/${id}`);
 export const deleteStudent = (id) => api.delete(`/students/${id}`);
 
 // Add other API methods similarly
+export const getCostById = (id) => api.get(`/cost/${id}`);
+// Updated function to accept query parameters for filtering
+export const getAllCosts = (boardingHouseId, type, category, date, minAmount, maxAmount) => 
+    api.get('/cost', {
+        params: {
+            boardingHouseId,
+            type,
+            category,
+            date,
+            minAmount,
+            maxAmount,
+        },
+    });
+export const addCost = (cost) => api.post('/cost', cost);
+export const updateCost = (id, cost) => api.put(`/cost/${id}`, cost);
+export const deleteCost = (id) => api.delete(`/cost/${id}`);
+export const getCostsByType = (type) => api.get(`/cost/byType/${type}`);
+export const getCostsByCategory = (category) => api.get(`/cost/byCategory/${category}`);
+export const getCostsByDate = (date) => api.get(`/cost/byDate/${date}`);
+export const getCostsByAmount = (amount) => api.get(`/cost/byAmount/${amount}`);
+export const getCostsByAmountRange = (minAmount, maxAmount) => api.get(`/cost/byAmountRange`, { params: { minAmount, maxAmount } });
+export const getAllCostCategories = () => api.get('/cost/categories');
+export const getMonthlySummary = (month, year) => api.get('/cost/monthlySummary', { params: { month, year } });
+export const getYearlySummary = (year) => api.get('/cost/yearlySummary', { params: { year } });

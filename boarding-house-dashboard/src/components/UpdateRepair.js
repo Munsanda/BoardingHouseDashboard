@@ -22,9 +22,12 @@ const UpdateRepair = ({ repairId, fetchRooms, setError }) => {
     useEffect(() => {
         setCost(repairDetails.cost);
         setNotes(repairDetails.notes);
-        setState(repairDetails.state)
+        setState(repairDetails.repairsComplete)
+        
     }, [repairDetails])
     
+    console.log(repairDetails)
+
     const handleUpdateRepair = async () => {
         if ( !notes.trim()) {
             alert('All fields are required');
@@ -62,6 +65,8 @@ const UpdateRepair = ({ repairId, fetchRooms, setError }) => {
                     />
                     <input
                         type="text"
+                        readOnly = {(state === true)? true:false}
+                        disabled ={(state === true)? true:false}
                         value={cost}
                         onChange={(e) => setCost(e.target.value)}
                         placeholder="cost"
