@@ -162,8 +162,8 @@ const AccountList = ({ boardingHouseId }) => {
               <td>{cost.amount}</td>
               <td>{cost.description}</td>
               <td>{new Date(cost.date).toLocaleDateString()}</td>
-              <td>{cost.type}</td>
-              <td>{cost.category}</td>
+              <td>{COST_TYPE_OPTIONS[cost.type]}</td>
+              <td>{COST_CATEGORY_OPTIONS[cost.category]}</td>
               <td>{cost.boardingHouseId}</td>
             </tr>
           ))}
