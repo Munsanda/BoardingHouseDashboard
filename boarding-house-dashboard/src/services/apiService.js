@@ -31,7 +31,7 @@ export const deleteStudent = (id) => api.delete(`/students/${id}`);
 // Add other API methods similarly
 export const getCostById = (id) => api.get(`/cost/${id}`);
 // Updated function to accept query parameters for filtering
-export const getAllCosts = (boardingHouseId, type, category, date, minAmount, maxAmount) => 
+export const getAllCosts = (boardingHouseId, type, category, date, minAmount, maxAmount, noteToken) => 
     api.get('/cost', {
         params: {
             boardingHouseId,
@@ -40,6 +40,7 @@ export const getAllCosts = (boardingHouseId, type, category, date, minAmount, ma
             date,
             minAmount,
             maxAmount,
+            noteToken   
         },
     });
 export const addCost = (cost) => api.post('/cost', cost);

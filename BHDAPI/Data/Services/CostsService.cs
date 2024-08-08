@@ -23,9 +23,9 @@ public class CostService : ICostService
         return await _context.Costs.FirstAsync(x => x.repairId == id);
     }
 
-    public async Task<IEnumerable<Cost>> GetAllCostsAsync()
+    public async Task<IEnumerable<Cost>> GetAllCostsAsync(int id)
     {
-        return await _context.Costs.ToListAsync();
+        return await _context.Costs.Where(x => x.BoardingHouseId == id).ToListAsync();
     }
 
     public async Task AddCostAsync(Cost cost)

@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using BHDAPI.Data.Interfaces;
 using BHDAPI;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BHDAPI.Controllers
 {
@@ -33,19 +34,20 @@ namespace BHDAPI.Controllers
         // GET: api/cost
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CostDTO>>> GetAllCosts(
-            [FromQuery] int? boardingHouseId,
+            [FromQuery] int boardingHouseId,
             [FromQuery] CostType? type,
             [FromQuery] CostCategory? category,
             [FromQuery] DateTime? fromDate, // Start of date range
             [FromQuery] DateTime? toDate,   // End of date range
             [FromQuery] decimal? minAmount,
-            [FromQuery] decimal? maxAmount)
+            [FromQuery] decimal? maxAmount,
+            [FromQuery] string? noteToken)
         {
-            var costs = await _costService.GetAllCostsAsync();
+            var costs = await _costService.GetAllCostsAsync(boardingHouseId);
 
-            if (boardingHouseId.HasValue)
+            if (!noteToken.IsNullOrEmpty())
             {
-                costs = costs.Where(c => c.BoardingHouseId == boardingHouseId.Value).ToList();
+                costs = costs.Where(c => c.Description.Contains(noteToken)).ToList();
             }
 
             if (type.HasValue)
