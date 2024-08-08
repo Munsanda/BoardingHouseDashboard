@@ -1,20 +1,66 @@
-body{
-  margin: 0;
-  padding: 0;
-  background-color: white;  
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  box-sizing: border-box;
+  background-color: white;
 }
 
 .App {
-  min-height: 100vh;
-  margin: 0;
-  padding-left:.5rem ;
-  padding-right: .5rem;
-  border: solid red 3px;
+  min-height: 99.3vh;
+  margin: 0px;
+  /* border: solid #624cf9 3px; */
+  border-radius: .5rem;
   display: flex;
 }
 
-.sidebar{
-  height: 100vh;
-  width: 10rem;
-  background-color: aqua;
+.sidebar {
+  width: 15rem;
+  background-color: #312677;
+  border-radius: .5rem 0 0 .5rem;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.search-bar {
+  flex-basis: rem;
+}
+
+.title-and-stats {
+  background-color: #624cf9;
+  flex-basis: 8rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  margin: .5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-basis: 15rem;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main-content {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+color-pallet {
+  color: #ffffff;
+  color: #f1f5f9;
+  color: #e0dcfc;
+  color: #624cf9;
+  color: #312677;
+  color: #212b35;
 }
