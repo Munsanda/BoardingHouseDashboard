@@ -86,7 +86,7 @@ namespace BHDAPI.Data.Interfaces {
         // CRUD operations
         Task<Cost> GetCostByIdAsync(int id);
         Task<Cost> GetCostByRepairIdAsync(int id);
-        Task<IEnumerable<Cost>> GetAllCostsAsync();
+        Task<IEnumerable<Cost>> GetAllCostsAsync(int id);
         Task AddCostAsync(Cost cost);
         Task UpdateCostAsync(Cost cost);
         Task DeleteCostAsync(int id);

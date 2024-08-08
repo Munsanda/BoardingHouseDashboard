@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using BHDAPI.Data.Interfaces;
 using BHDAPI;
+using Microsoft.IdentityModel.Tokens;
 
 namespace BHDAPI.Controllers
 {
@@ -29,13 +30,59 @@ namespace BHDAPI.Controllers
             return Ok(cost.AsDTO());
         }
 
+
         // GET: api/cost
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CostDTO>>> GetAllCosts()
+        public async Task<ActionResult<IEnumerable<CostDTO>>> GetAllCosts(
+            [FromQuery] int boardingHouseId,
+            [FromQuery] CostType? type,
+            [FromQuery] CostCategory? category,
+            [FromQuery] DateTime? fromDate, // Start of date range
+            [FromQuery] DateTime? toDate,   // End of date range
+            [FromQuery] decimal? minAmount,
+            [FromQuery] decimal? maxAmount,
+            [FromQuery] string? noteToken)
         {
-            var costs = await _costService.GetAllCostsAsync();
-            return Ok(costs.Select(x => x.AsDTO()).ToList());
+            var costs = await _costService.GetAllCostsAsync(boardingHouseId);
+
+            if (!noteToken.IsNullOrEmpty())
+            {
+                costs = costs.Where(c => c.Description.Contains(noteToken)).ToList();
+            }
+
+            if (type.HasValue)
+            {
+                costs = costs.Where(c => c.Type == type.Value).ToList();
+            }
+
+            if (category.HasValue)
+            {
+                costs = costs.Where(c => c.Category == category.Value).ToList();
+            }
+
+            if (fromDate.HasValue)
+            {
+                costs = costs.Where(c => c.Date.Date >= fromDate.Value.Date).ToList();
+            }
+
+            if (toDate.HasValue)
+            {
+                costs = costs.Where(c => c.Date.Date <= toDate.Value.Date).ToList();
+            }
+
+            if (minAmount.HasValue)
+            {
+                costs = costs.Where(c => c.Amount >= minAmount.Value).ToList();
+            }
+
+            if (maxAmount.HasValue)
+            {
+                costs = costs.Where(c => c.Amount <= maxAmount.Value).ToList();
+            }
+
+            return Ok(costs);
         }
+
 
         // POST: api/cost
         [HttpPost]

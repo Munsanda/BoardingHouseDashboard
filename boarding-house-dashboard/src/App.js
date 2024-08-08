@@ -4,8 +4,7 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './components/Dashboard';
 import RoomList from './components/RoomList';
 import StudentList from './components/StudentList';
-import RentList from './components/RentList';
-import RepairList from './components/RepairList';
+import AccountsList from './components/AccountsList';
 import './App.css';
 
 function App() {
