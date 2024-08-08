@@ -7,8 +7,7 @@ import { faBars  } from '@fortawesome/free-solid-svg-icons'
 
 const Sidebar = () => {
     return (
-        <div className="sidebar">
-            <FontAwesomeIcon icon={faBars} />
+        <div className="sidebar-content">
             <h2>Dashboard</h2>
             <nav>
                 <ul>

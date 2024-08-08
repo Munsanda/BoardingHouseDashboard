@@ -1,7 +1,6 @@
 body{
-  min-height: 100vh;
-  box-sizing: border-box;
   margin: 0;
+  padding: 0;
   background-color: white;  
 }
 
@@ -11,74 +10,11 @@ body{
   padding-left:.5rem ;
   padding-right: .5rem;
   border: solid red 3px;
-}
-
-.App > .sidebar-panel, .search-bar, .main-content{
-  border:2px solid #dcdfe2;
-  border-radius: .5rem;
-  background-color: #f8f9fa;
-}
-
-.sidebar-panel{
-  min-height: 98vh;
-  width: fit-content;
-  position: fixed;
-  margin-top: .5rem;
-}
-
-.search-bar, .main-content{
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
-
-.search-bar{
-  position:fixed;
-  top: .5rem;
-  width: 1185px;
-  min-width: 900px;
-
-}
-.search-bar, .main-content{
-  margin-left: 9rem;
-  margin-right: 9rem;
-}
-
-.main-content{
-  margin-top: 6rem;
-  padding-left: 15rem;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.sidebar{
+  height: 100vh;
+  width: 10rem;
+  background-color: aqua;
 }
