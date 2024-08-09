@@ -8,6 +8,7 @@ import Modal from './Modal';
 import '../styles/RoomList.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquareXmark, faSquareCheck  } from '@fortawesome/free-solid-svg-icons'
+import UpdateStudent from './UpdateStudent';
 
 
 const RoomList = ({ boardingHouseId }) => {
@@ -118,8 +119,8 @@ const RoomList = ({ boardingHouseId }) => {
         const today = new Date();
         const rentEndDate = new Date(endDate);
 
-        console.log(endDate);
-            console.log(today);
+            //console.log(endDate);
+            //console.log(today);
         if (rentEndDate < today) {
             
             return 'red'; // Rent is overdue
@@ -152,7 +153,7 @@ const RoomList = ({ boardingHouseId }) => {
                                 <div className="students">
                                     {room.students?.$values?.map(student => (
                                         <div key={student.id}> 
-                                           <a>{student.fname} {student.lname} </a>  
+                                           <a onClick={() => {openModalWithContent(<UpdateStudent studentId = {student.id} fetchRooms={fetchRooms} setError={setError}/>)}}>{student.fname} {student.lname} </a>  
                                         </div>
                                     ))}
                                      <button onClick={() =>openModalWithContent(<AddStudent roomId={room.id} fetchRooms={fetchRooms} setError={setError} />)}>Add Student</button>

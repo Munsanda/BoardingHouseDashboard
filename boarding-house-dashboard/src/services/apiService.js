@@ -15,6 +15,7 @@ export const getStudentsByRoomId = (id) => api.get(`/rooms/${id}/students`);
 export const getRentDetailsByStudentId = (id) => api.get(`/students/${id}/rents`);
 export const getRepairsByRoomId = (id) => api.get(`/rooms/${id}/repairs`);
 export const getRepairDetails = (id) => api.get(`/repair/${id}`);
+export const getStudentDetails = (id) => api.get(`/student/${id}`);
 
 export const createBoardingHouse = (boardingHouse) => api.post('/boardinghouses', boardingHouse);
 export const createRoomForBoardingHouse = (id, room) => api.post(`/boardinghouses/${id}/rooms`, room);

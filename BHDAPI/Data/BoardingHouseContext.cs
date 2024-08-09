@@ -2,6 +2,12 @@ using Microsoft.EntityFrameworkCore;
 
 public class BoardingHouseContext : DbContext
 {
+
+    [DbFunction(Name = "SOUNDEX", IsBuiltIn = true)]
+    public static string SoundsLike(string query)
+    {
+        throw new NotImplementedException();
+    }
     public DbSet<BoardingHouse> BoardingHouses { get; set; }
     public DbSet<Room> Rooms { get; set; }
     public DbSet<Student> Students { get; set; }

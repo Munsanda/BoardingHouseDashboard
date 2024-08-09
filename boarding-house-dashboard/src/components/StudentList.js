@@ -57,7 +57,7 @@ const StudentList = ({ boardingHouseId }) => {
                             <span>{student.fname}</span>
                             <span>{student.lname}</span>
                             <span>{student.idNumber}</span>
-                            <span>{student.roomId}</span>
+                            <span>{student.room }</span>
                             <span>{new Date(student.dateOfEntry).toLocaleDateString()}</span>
                             <span>{student.numberOfWarnings}</span>
                         </div>

@@ -13,7 +13,7 @@ const UpdateRepair = ({ repairId, fetchRooms, setError }) => {
         const fetchRepairDetails = async () => {
             const result = await getRepairDetails(repairId);
             setRepairDetails(result.data);
-
+            console.log(result);
         };
         fetchRepairDetails();
 

@@ -14,6 +14,18 @@ public class StudentController : ControllerBase
         _roomService = roomService;
     }
 
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetStudentById(int id)
+    {
+
+        var student = await _studentService.GetStudentByIdAsync(id);
+        if(student == null){
+            return NotFound();
+        }
+
+        return Ok(student);
+    }
+
     [HttpPost("/api/rooms/{id}/students")]
     public async Task<IActionResult> CreateStudentForRoom(int id, CreateStudentDTO student)
     {
