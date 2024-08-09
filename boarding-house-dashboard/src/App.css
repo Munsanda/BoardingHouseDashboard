@@ -1,84 +1,66 @@
-body{
-  min-height: 100vh;
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
   box-sizing: border-box;
-  margin: 0;
-  background-color: white;  
+  background-color: white;
 }
 
 .App {
-  min-height: 100vh;
-  margin: 0;
-  padding-left:.5rem ;
-  padding-right: .5rem;
-  border: solid red 3px;
-}
-
-.App > .sidebar-panel, .search-bar, .main-content{
-  border:2px solid #dcdfe2;
+  min-height: 99.3vh;
+  margin: 0px;
+  /* border: solid #624cf9 3px; */
   border-radius: .5rem;
-  background-color: #f8f9fa;
+  display: flex;
 }
 
-.sidebar-panel{
-  min-height: 98vh;
-  width: fit-content;
-  position: fixed;
-  margin-top: .5rem;
+.sidebar {
+  width: 15rem;
+  background-color: #312677;
+  border-radius: .5rem 0 0 .5rem;
 }
 
-.search-bar, .main-content{
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
-
-.search-bar{
-  position:fixed;
-  top: .5rem;
-  width: 1185px;
-  min-width: 900px;
-
-}
-.search-bar, .main-content{
-  margin-left: 9rem;
-  margin-right: 9rem;
-}
-
-.main-content{
-  margin-top: 6rem;
-  padding-left: 15rem;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.content {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+}
+
+.search-bar {
+  flex-basis: rem;
+}
+
+.title-and-stats {
+  background-color: #624cf9;
+  flex-basis: 8rem;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card {
+  background-color: white;
+  border-radius: 8px;
+  margin: .5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  flex-basis: 15rem;
+  flex-shrink: 1;
+  flex-grow: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.main-content {
+  max-height: 500px;
+  overflow-y: scroll;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+color-pallet {
+  color: #ffffff;
+  color: #f1f5f9;
+  color: #e0dcfc;
+  color: #624cf9;
+  color: #312677;
+  color: #212b35;
 }

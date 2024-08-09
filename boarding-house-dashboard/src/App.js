@@ -5,24 +5,74 @@ import Dashboard from './components/Dashboard';
 import RoomList from './components/RoomList';
 import StudentList from './components/StudentList';
 import AccountsList from './components/AccountsList';
+import RentList from './components/RentList';
+import RepairList from './components/RepairList'
 import './App.css';
 
 function App() {
     return (
         <Router>
             <div className="App">
-                <div className="sidebar-panel">
+
+                <div className="sidebar">
                     <Sidebar />
                 </div>
-                <div className="search-bar">
-                    <Dashboard />
-                </div>
-                <div className="main-content">
-                    <Routes>
-                        <Route path="/rooms" element={<RoomList boardingHouseId={2} />} />
-                        <Route path="/students" element={<StudentList boardingHouseId={2} />} />
-                        <Route path="/AccountsList" element={<AccountsList boardingHouseId={2} />} />
-                    </Routes>
+
+                <div className="content">
+                    <div className="search-bar">
+                        <Dashboard />
+                    </div>
+                    <div className="title-and-stats">
+                        <div class="card">
+                            <div class="icon">
+                                {/* <img src="folder-icon.png" alt="Folder Icon"> */}
+                            </div>
+                            <div class="content">
+                                <h2>18</h2>
+                                <p>Projects</p>
+                                <small>2 Completed</small>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">
+                                {/* <img src="folder-icon.png" alt="Folder Icon"> */}
+                            </div>
+                            <div class="content">
+                                <h2>18</h2>
+                                <p>Projects</p>
+                                <small>2 Completed</small>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">
+                                {/* <img src="folder-icon.png" alt="Folder Icon"> */}
+                            </div>
+                            <div class="content">
+                                <h2>18</h2>
+                                <p>Projects</p>
+                                <small>2 Completed</small>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="icon">
+                                {/* <img src="folder-icon.png" alt="Folder Icon"> */}
+                            </div>
+                            <div class="content">
+                                <h2>18</h2>
+                                <p>Projects</p>
+                                <small>2 Completed</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="main-content">
+                        <Routes>
+                            <Route path="/rooms" element={<RoomList boardingHouseId={2} />} />
+                            <Route path="/students" element={<StudentList boardingHouseId={2} />} />
+                            <Route path="/rent" element={<RentList />} />
+                            <Route path="/repairs" element={<RepairList />} />
+                        </Routes>
+                    </div>
                 </div>
 
             </div>
